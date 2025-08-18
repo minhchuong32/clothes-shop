@@ -719,5 +719,4 @@ export const products = [
         date: 1716668445448,
         bestseller: false
     }
-
-]
+];

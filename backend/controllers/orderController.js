@@ -1,6 +1,8 @@
 import orderModel from "../models/orderModel.js";
 import Stripe from "stripe";
 import userModel from "../models/userModel.js";
+import axios from "axios";
+import crypto from "crypto";
 
 // global variables
 const currency = "inr"; // default currency for stripe
@@ -9,7 +11,7 @@ const deliveryCharge = 10; // default delivery charge
 // gateway initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// placing order using stripe method
+
 const placeOrder = async (req, res) => {
   try {
     const { userId, items, amount, address, paymentMethod } = req.body;
@@ -41,7 +43,7 @@ const placeOrder = async (req, res) => {
   }
 };
 
-// placing orders using razorpay method
+// placing order using stripe method
 const placeOrderStripe = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;

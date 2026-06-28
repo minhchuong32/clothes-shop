@@ -1,11 +1,16 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+import dns from "dns";
 
-const connectDB = async() => {
-        mongoose.connection.on('connected', () => {
-            console.log('MongoDB connected successfully');
-        });
+// Force DNS servers to resolve MongoDB SRV records properly on Windows
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
-        await mongoose.connect(`${process.env.MONGODB_URI}/e0commerce}`)
-}
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI);
+        console.log("MongoDB connected successfully");
+    } catch (err) {
+        console.error("MongoDB Error:", err);
+    }
+};
 
 export default connectDB;

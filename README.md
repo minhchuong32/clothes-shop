@@ -1,84 +1,98 @@
-# 🛍️ Xuân Hải E-Commerce
+# 🛍️ Xuan Hai E-Commerce
 
-Dự án web thương mại điện tử full-stack xây dựng bằng **React + Vite** (frontend & admin) và **Node.js + Express + MongoDB** (backend). Hỗ trợ quản lý sản phẩm, đơn hàng, giỏ hàng và thanh toán qua Stripe.
+A full-stack e-commerce web application built with **React + Vite** for the frontend and admin dashboard, and **Node.js + Express + MongoDB** for the backend. The application supports product management, shopping cart, order processing, and secure online payments via Stripe.
 
 ---
 
-## 📁 Cấu trúc dự án
+# 📁 Project Structure
 
-```
-├── frontend/       # Giao diện người dùng (React + Vite + Tailwind CSS)
-├── admin/          # Trang quản trị (React + Vite + Tailwind CSS)
-├── backend/        # API server (Node.js + Express + MongoDB)
+```text
+├── frontend/       # Customer-facing web application (React + Vite + Tailwind CSS)
+├── admin/          # Admin dashboard (React + Vite + Tailwind CSS)
+├── backend/        # REST API server (Node.js + Express + MongoDB)
 └── README.md
 ```
 
 ---
 
-## ✨ Tính năng
+# ✨ Features
 
-### 🖥️ Trang quản trị (`/admin`)
-- Đăng nhập admin bảo mật bằng JWT
-- Thêm sản phẩm mới kèm tối đa 4 ảnh (upload lên Cloudinary)
-- Xem danh sách & xóa sản phẩm
-- Quản lý đơn hàng và cập nhật trạng thái giao hàng
+## 🖥️ Admin Dashboard (`/admin`)
 
-### 🌐 Giao diện người dùng (`/frontend`)
-- Trang chủ với Hero banner, bộ sưu tập mới nhất & sản phẩm bán chạy
-- Trang bộ sưu tập với bộ lọc theo danh mục, loại sản phẩm và sắp xếp theo giá
-- Thanh tìm kiếm sản phẩm realtime
-- Trang chi tiết sản phẩm: xem ảnh, chọn size, sản phẩm liên quan
-- Giỏ hàng: thêm, cập nhật số lượng, xóa sản phẩm
-- Đặt hàng với form địa chỉ giao hàng đầy đủ
-- Thanh toán COD hoặc Stripe
-- Xác minh thanh toán Stripe tự động (`/verify`)
-- Trang lịch sử đơn hàng và theo dõi trạng thái
-- Đăng ký / Đăng nhập tài khoản
-- Trang Giới thiệu & Liên hệ
-- Đăng ký nhận bản tin (newsletter)
-- Responsive toàn bộ giao diện (mobile & desktop)
-- Quản lý state toàn cục qua React Context API (`ShopContext`)
-
-### ⚙️ Backend API (`/backend`)
-- Xác thực người dùng (đăng ký, đăng nhập, JWT)
-- CRUD sản phẩm với upload ảnh qua Cloudinary
-- Quản lý giỏ hàng theo từng người dùng
-- Đặt hàng với nhiều phương thức thanh toán:
-  - COD (thanh toán khi nhận hàng)
-  - Stripe
-  - Razorpay *(đang phát triển)*
+- Secure administrator authentication using JWT
+- Add new products with up to 4 images uploaded to Cloudinary
+- View and delete products
+- Manage customer orders
+- Update order delivery status
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## 🌐 Customer Website (`/frontend`)
 
-| Thành phần | Công nghệ |
-|---|---|
-| Frontend người dùng | React 19, Vite, Tailwind CSS, Context API |
-| Frontend Admin | React 19, Vite 7, Tailwind CSS 4 |
-| Backend | Node.js, Express 5, MongoDB (Mongoose) |
-| Xác thực | JWT (jsonwebtoken), bcrypt |
-| Lưu trữ ảnh | Cloudinary |
-| Thanh toán | Stripe, Razorpay |
+- Modern homepage with Hero Banner, Latest Collection, and Best Sellers
+- Product collection with category filters, sorting, and search
+- Real-time product search
+- Product detail page with image gallery, size selection, and related products
+- Shopping cart with quantity updates and item removal
+- Checkout with complete shipping information
+- Multiple payment methods:
+  - Cash on Delivery (COD)
+  - Stripe
+- Automatic Stripe payment verification
+- Order history and order tracking
+- User registration and login
+- About and Contact pages
+- Newsletter subscription
+- Fully responsive design
+- Global state management using React Context API
+
+---
+
+## ⚙️ Backend API (`/backend`)
+
+- User authentication (Register, Login, JWT)
+- Product CRUD operations
+- Cloudinary image upload
+- Shopping cart management
+- Order processing
+- Payment integration:
+  - Cash on Delivery
+  - Stripe
+  - Razorpay *(In Progress)*
+
+---
+
+# 🛠️ Tech Stack
+
+| Layer | Technologies |
+|--------|--------------|
+| Frontend | React 19, Vite, Tailwind CSS, Context API |
+| Admin Dashboard | React 19, Vite 7, Tailwind CSS 4 |
+| Backend | Node.js, Express 5 |
+| Database | MongoDB + Mongoose |
+| Authentication | JWT, bcrypt |
+| Image Storage | Cloudinary |
+| Payment | Stripe, Razorpay |
 | HTTP Client | Axios |
 | Routing | React Router DOM v7 |
-| Thông báo | React Toastify |
-| Upload file | Multer |
-| Font chữ | Google Fonts (Prata, Roboto, Outfit, Poppins) |
+| Notifications | React Toastify |
+| File Upload | Multer |
+| Fonts | Google Fonts (Prata, Roboto, Outfit, Poppins) |
 
 ---
 
-## 🚀 Hướng dẫn cài đặt
+# 🚀 Getting Started
 
-### Yêu cầu hệ thống
-- Node.js >= 20.x
-- MongoDB Atlas hoặc MongoDB local
-- Tài khoản [Cloudinary](https://cloudinary.com/)
-- Tài khoản [Stripe](https://stripe.com/) *(nếu dùng thanh toán online)*
+## Prerequisites
+
+- Node.js 20+
+- MongoDB Atlas or Local MongoDB
+- Cloudinary Account
+- Stripe Account (for online payments)
 
 ---
 
-### 1. Clone dự án
+## 1. Clone the Repository
 
 ```bash
 git clone <repository-url>
@@ -87,31 +101,31 @@ cd <project-folder>
 
 ---
 
-### 2. Cài đặt Backend
+## 2. Backend Setup
 
 ```bash
 cd backend
 npm install
 ```
 
-Tạo file `.env` trong thư mục `backend/`:
+Create a `.env` file inside the `backend` folder.
 
 ```env
 # Server
 PORT=4000
 
-# MongoDB
+# Database
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net
 
-# JWT
-JWT_SECRET=your_jwt_secret_key
+# Authentication
+JWT_SECRET=your_jwt_secret
 
 # Cloudinary
 CLOUDINARY_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_SECRET_KEY=your_api_secret
 
-# Admin
+# Admin Account
 ADMIN_EMAIL=admin@example.com
 ADMIN_PASSWORD=your_admin_password
 
@@ -119,196 +133,246 @@ ADMIN_PASSWORD=your_admin_password
 STRIPE_SECRET_KEY=sk_test_...
 ```
 
-Chạy server:
+Start the backend server.
+
+Development
 
 ```bash
-# Development (với nodemon)
 npm run server
+```
 
-# Production
+Production
+
+```bash
 npm start
 ```
 
-Server chạy tại: `http://localhost:4000`
+Server URL
+
+```
+http://localhost:4000
+```
 
 ---
 
-### 3. Cài đặt Frontend
+## 3. Frontend Setup
 
 ```bash
 cd frontend
 npm install
 ```
 
-Tạo file `.env` trong thư mục `frontend/`:
+Create a `.env` file.
 
 ```env
 VITE_BACKEND_URL=http://localhost:4000
 ```
 
-Chạy dev server:
+Run the development server.
 
 ```bash
 npm run dev
 ```
 
-Frontend chạy tại: `http://localhost:5173`
+Frontend URL
+
+```
+http://localhost:5173
+```
 
 ---
 
-### 4. Cài đặt Admin Panel
+## 4. Admin Dashboard Setup
 
 ```bash
 cd admin
 npm install
 ```
 
-Tạo file `.env` trong thư mục `admin/`:
+Create a `.env` file.
 
 ```env
 VITE_BACKEND_URL=http://localhost:4000
 ```
 
-Chạy dev server:
+Run the development server.
 
 ```bash
 npm run dev
 ```
 
-Admin panel chạy tại: `http://localhost:5174`
-
----
-
-## 📡 API Endpoints
-
-### 👤 User (`/api/user`)
-| Method | Endpoint | Mô tả |
-|--------|----------|-------|
-| POST | `/register` | Đăng ký tài khoản |
-| POST | `/login` | Đăng nhập |
-| POST | `/admin` | Đăng nhập admin |
-
-### 📦 Product (`/api/product`)
-| Method | Endpoint | Mô tả | Auth |
-|--------|----------|-------|------|
-| POST | `/add` | Thêm sản phẩm | Admin |
-| GET | `/list` | Lấy danh sách sản phẩm | — |
-| POST | `/remove` | Xóa sản phẩm | — |
-| POST | `/single` | Lấy chi tiết sản phẩm | — |
-
-### 🛒 Cart (`/api/cart`)
-| Method | Endpoint | Mô tả | Auth |
-|--------|----------|-------|------|
-| POST | `/add` | Thêm vào giỏ hàng | User |
-| POST | `/update` | Cập nhật giỏ hàng | User |
-| POST | `/get` | Lấy giỏ hàng | User |
-
-### 🧾 Order (`/api/order`)
-| Method | Endpoint | Mô tả | Auth |
-|--------|----------|-------|------|
-| POST | `/place` | Đặt hàng COD | User |
-| POST | `/stripe` | Đặt hàng qua Stripe | User |
-| POST | `/userorders` | Lấy đơn hàng của user | User |
-| POST | `/list` | Lấy tất cả đơn hàng | Admin |
-| POST | `/status` | Cập nhật trạng thái đơn | Admin |
-| POST | `/verifyStripe` | Xác nhận thanh toán Stripe | User |
-
----
-
-## 🗂️ Trạng thái đơn hàng
+Admin URL
 
 ```
-Đã đặt hàng → Đang đóng gói → Đã gửi hàng → Đang giao → Đã giao
+http://localhost:5174
 ```
 
 ---
 
-## 🌐 Triển khai (Vercel)
+# 📡 REST API
 
-Cả `admin` và `backend` đều có sẵn file `vercel.json` để deploy lên Vercel.
+## Authentication
 
-### Deploy Frontend
+### User API (`/api/user`)
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/register` | Register a new account |
+| POST | `/login` | User login |
+| POST | `/admin` | Admin login |
+
+---
+
+## Product API (`/api/product`)
+
+| Method | Endpoint | Authentication | Description |
+|---------|----------|----------------|-------------|
+| POST | `/add` | Admin | Create a product |
+| GET | `/list` | Public | Get all products |
+| POST | `/remove` | Admin | Delete a product |
+| POST | `/single` | Public | Get product details |
+
+---
+
+## Cart API (`/api/cart`)
+
+| Method | Endpoint | Authentication | Description |
+|---------|----------|----------------|-------------|
+| POST | `/add` | User | Add product to cart |
+| POST | `/update` | User | Update cart |
+| POST | `/get` | User | Retrieve cart |
+
+---
+
+## Order API (`/api/order`)
+
+| Method | Endpoint | Authentication | Description |
+|---------|----------|----------------|-------------|
+| POST | `/place` | User | Place COD order |
+| POST | `/stripe` | User | Place Stripe order |
+| POST | `/userorders` | User | Get user's orders |
+| POST | `/list` | Admin | Get all orders |
+| POST | `/status` | Admin | Update order status |
+| POST | `/verifyStripe` | User | Verify Stripe payment |
+
+---
+
+# 📦 Order Workflow
+
+```text
+Placed
+   ↓
+Packing
+   ↓
+Shipped
+   ↓
+Out for Delivery
+   ↓
+Delivered
+```
+
+---
+
+# ☁️ Deployment
+
+The project is ready for deployment on **Vercel**.
+
+## Deploy Frontend
+
 ```bash
 cd frontend
 npm run build
 vercel --prod
 ```
 
-### Deploy Backend
+## Deploy Backend
+
 ```bash
 cd backend
 vercel --prod
 ```
 
-### Deploy Admin
+## Deploy Admin Dashboard
+
 ```bash
 cd admin
 npm run build
 vercel --prod
 ```
 
-> ⚠️ Sau khi deploy backend, cập nhật lại `VITE_BACKEND_URL` trong biến môi trường của cả **frontend** và **admin** trên Vercel dashboard.
+> After deploying the backend, remember to update `VITE_BACKEND_URL` in both the **Frontend** and **Admin** environment variables.
 
 ---
 
-## 📂 Cấu trúc thư mục chi tiết
+# 📂 Folder Structure
 
-```
+## Frontend
+
+```text
 frontend/
 ├── src/
-│   ├── assets/         # Hình ảnh, icon, dữ liệu tĩnh
-│   ├── components/     # Navbar, Footer, Hero, ProductItem, SearchBar...
-│   ├── context/        # ShopContext (global state)
-│   ├── pages/          # Home, Collection, Product, Cart, PlaceOrder, Orders...
+│   ├── assets/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
 │   ├── App.jsx
 │   └── main.jsx
 └── vite.config.js
+```
 
+## Admin
+
+```text
 admin/
 ├── src/
-│   ├── assets/         # Hình ảnh, icon tĩnh
-│   ├── components/     # Login, Navbar, Sidebar
-│   ├── pages/          # Add.jsx, List.jsx, Order.jsx
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
 │   ├── App.jsx
 │   └── main.jsx
 └── vite.config.js
+```
 
+## Backend
+
+```text
 backend/
-├── config/             # Kết nối MongoDB & Cloudinary
-├── controllers/        # Xử lý logic nghiệp vụ
-├── middleware/         # Auth, AdminAuth, Multer
-├── models/             # User, Product, Order schemas
-├── routes/             # Định nghĩa API routes
+├── config/
+├── controllers/
+├── middleware/
+├── models/
+├── routes/
 └── server.js
 ```
 
 ---
 
-## 🗺️ Các trang Frontend
+# 🗺️ Frontend Pages
 
-| Đường dẫn | Trang | Mô tả |
-|---|---|---|
-| `/` | Home | Trang chủ, hero banner, bộ sưu tập & bán chạy |
-| `/collection` | Collection | Danh sách sản phẩm, lọc & sắp xếp |
-| `/product/:id` | Product | Chi tiết sản phẩm, chọn size, thêm giỏ hàng |
-| `/cart` | Cart | Giỏ hàng, cập nhật số lượng |
-| `/place-order` | PlaceOrder | Nhập địa chỉ & chọn phương thức thanh toán |
-| `/orders` | Orders | Lịch sử đơn hàng |
-| `/verify` | Verify | Xác minh thanh toán Stripe |
-| `/login` | Login | Đăng nhập / Đăng ký |
-| `/about` | About | Giới thiệu thương hiệu |
-| `/contact` | Contact | Thông tin liên hệ |
-
----
-
-## 📝 Ghi chú
-
-- Tích hợp **Razorpay** hiện chưa hoàn thiện
-- Đảm bảo cấu hình **CORS** phù hợp khi deploy production
-- Không commit file `.env` lên repository
+| Route | Description |
+|--------|-------------|
+| `/` | Home |
+| `/collection` | Product Collection |
+| `/product/:id` | Product Details |
+| `/cart` | Shopping Cart |
+| `/place-order` | Checkout |
+| `/orders` | Order History |
+| `/verify` | Stripe Payment Verification |
+| `/login` | Login / Register |
+| `/about` | About Us |
+| `/contact` | Contact |
 
 ---
 
-## 📄 License
+# 📌 Notes
 
-ISC
+- Razorpay integration is currently under development.
+- Configure CORS properly before deploying to production.
+- Never commit `.env` files to the repository.
+- Store all secrets securely using environment variables.
+
+---
+
+# 📄 License
+
+This project is licensed under the **ISC License**.

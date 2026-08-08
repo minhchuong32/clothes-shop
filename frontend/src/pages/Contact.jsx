@@ -27,16 +27,6 @@ const Contact = () => {
             Địa chỉ: Tiệm may Xuân Hải, KDC 24, Thôn Thạch Thang, xã Lân Phong, huyện Mộ
             Đức, tỉnh Quảng Ngãi
           </p>
-
-          <p className="font-semibold text-xl text-gray-600">
-            Tuyển dụng tại Forever
-          </p>
-          <p className="text-gray-500">
-            Tìm hiểu thêm về đội ngũ của chúng tôi và các vị trí đang tuyển.
-          </p>
-          <button className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500">
-            Ứng tuyển ngay
-          </button>
         </div>
       </div>
 

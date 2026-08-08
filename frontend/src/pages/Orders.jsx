@@ -3,9 +3,13 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { toast } from "react-toastify";
 import axios from "axios";
+import TrackOrderModal from "../components/TrackOrderModal";
+
 const Orders = () => {
   const { backendUrl, token, currency } = useContext(ShopContext);
   const [orderData, setOrderData] = useState([]);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
   const loadOrderData = async () => {
     try {
       if (!token) return null;
@@ -32,7 +36,14 @@ const Orders = () => {
             allOrderItems.push(item);
           });
         });
-        setOrderData(allOrderItems.reverse());
+        const updatedList = allOrderItems.reverse();
+        setOrderData(updatedList);
+
+        // Keep active tracked order synced if currently open
+        if (selectedOrder) {
+          const freshTrack = updatedList.find((i) => i.orderId === selectedOrder.orderId);
+          if (freshTrack) setSelectedOrder(freshTrack);
+        }
       } else {
         toast.error("Lỗi khi tải dữ liệu đơn hàng");
       }
@@ -54,6 +65,9 @@ const Orders = () => {
 
       if (response.data.success) {
         toast.success("Hủy đơn hàng thành công!");
+        if (selectedOrder && selectedOrder.orderId === orderId) {
+          setSelectedOrder(null);
+        }
         loadOrderData();
       } else {
         toast.error(response.data.message || "Hủy đơn hàng thất bại");
@@ -129,8 +143,8 @@ const Orders = () => {
                       </button>
                     )}
                     <button
-                      onClick={loadOrderData}
-                      className="border px-4 py-2 text-sm font-medium rounded-sm hover:bg-gray-100 cursor-pointer transition"
+                      onClick={() => setSelectedOrder(item)}
+                      className="border border-black bg-black text-white px-4 py-2 text-sm font-medium rounded-sm hover:bg-gray-800 cursor-pointer transition shadow-sm"
                     >
                       Theo dõi đơn hàng
                     </button>
@@ -140,6 +154,16 @@ const Orders = () => {
             );
           })}
         </div>
+      )}
+
+      {/* Modal Theo Dõi Đơn Hàng */}
+      {selectedOrder && (
+        <TrackOrderModal
+          order={selectedOrder}
+          currency={currency}
+          onClose={() => setSelectedOrder(null)}
+          onRefresh={() => loadOrderData()}
+        />
       )}
     </div>
   );

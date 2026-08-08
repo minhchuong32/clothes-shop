@@ -43,6 +43,11 @@ const PlaceOrder = () => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    if (!token) {
+      toast.error("Vui lòng đăng nhập để thực hiện đặt hàng");
+      navigate("/login");
+      return;
+    }
     try {
       let orderItem = [];
       if (Object.keys(cartItems).length === 0) {
@@ -85,28 +90,21 @@ const PlaceOrder = () => {
             navigate("/orders");
             toast.success("Đặt hàng thành công");
           } else {
-            toast.error("Đặt hàng thất bại: " + response.data.message);
-          }
-          break;
-        case "stripe":
-          const responseStripe = await axios.post(
-            backendUrl + "/api/order/stripe",
-            orderData,
-            {
-              headers: { token },
+            if (response.data.message === "Not Authorized Login Again") {
+              toast.error("Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại");
+              navigate("/login");
+            } else {
+              toast.error("Đặt hàng thất bại: " + response.data.message);
             }
-          );
-          if (responseStripe.data.success) {
-            const { session_url } = responseStripe.data;
-            window.location.replace(session_url);
-          } else {
-            toast.error("Đặt hàng thất bại: " + responseStripe.data.message);
           }
           break;
         default:
           break;
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      toast.error("Đã xảy ra lỗi khi đặt hàng: " + error.message);
+    }
   };
 
 
@@ -227,24 +225,10 @@ const PlaceOrder = () => {
           <Title text1={"PHƯƠNG THỨC"} text2={"THANH TOÁN"} />
 
           <div className="flex gap-3 flex-col lg:flex-row">
-            {/* Stripe */}
-            <div
-              onClick={() => setMethod("stripe")}
-              className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
-            >
-              <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "stripe" ? "bg-green-400" : ""
-                }`}
-              ></p>
-              <img className="h-5 mx-4" src={assets.stripe_logo} alt="Stripe" />
-            </div>
-
-
             {/* Thanh toán khi nhận hàng */}
             <div
               onClick={() => setMethod("COD")}
-              className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
+              className="flex items-center gap-3 border p-2 px-3 cursor-pointer rounded"
             >
               <p
                 className={`min-w-3.5 h-3.5 border rounded-full ${

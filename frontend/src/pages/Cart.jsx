@@ -3,10 +3,11 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
 import CartTotal from "../components/CartTotal";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   // Lấy thông tin từ context
-  const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
+  const { products, currency, cartItems, updateQuantity, navigate, token } = useContext(ShopContext);
 
   // Dữ liệu giỏ hàng hiển thị
   const [cartData, setCartData] = useState([]);
@@ -94,8 +95,15 @@ const Cart = () => {
           <CartTotal />
           <div className="w-full text-end">
             <button
-              onClick={() => navigate('/place-order')}
-              className="mt-10 bg-black text-white py-2 px-4 rounded"
+              onClick={() => {
+                if (!token) {
+                  toast.error("Vui lòng đăng nhập để tiến hành đặt hàng");
+                  navigate('/login');
+                } else {
+                  navigate('/place-order');
+                }
+              }}
+              className="mt-10 bg-black text-white py-2 px-4 rounded cursor-pointer hover:bg-gray-800 transition-all"
             >
               TIẾN HÀNH ĐẶT HÀNG
             </button>

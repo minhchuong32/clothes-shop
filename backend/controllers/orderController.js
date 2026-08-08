@@ -161,15 +161,47 @@ const updateStatus = async (req, res) => {
     const { orderId, status } = req.body;
     await orderModel.findByIdAndUpdate(orderId, { status });
     res.json({ success: true, message: "Order status updated successfully" });
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    res.status(500).json({ success: false, message: "Internal server error: " + error.message });
+  }
+};
+
+// cancel order for user
+const cancelOrder = async (req, res) => {
+  try {
+    const { userId, orderId } = req.body;
+    const order = await orderModel.findById(orderId);
+
+    if (!order) {
+      return res.status(404).json({ success: false, message: "Không tìm thấy đơn hàng" });
+    }
+
+    if (order.userId !== userId) {
+      return res.status(403).json({ success: false, message: "Bạn không có quyền hủy đơn hàng này" });
+    }
+
+    if (order.status === "Delivered" || order.status === "Shipped" || order.status === "Out for delivery") {
+      return res.status(400).json({ success: false, message: "Đơn hàng đang giao hoặc đã giao thành công, không thể hủy" });
+    }
+
+    if (order.status === "Cancelled" || order.status === "Đã hủy") {
+      return res.status(400).json({ success: false, message: "Đơn hàng đã được hủy trước đó" });
+    }
+
+    await orderModel.findByIdAndUpdate(orderId, { status: "Cancelled" });
+    res.json({ success: true, message: "Hủy đơn hàng thành công" });
+  } catch (error) {
+    console.error("Error cancelling order:", error);
+    res.status(500).json({ success: false, message: "Internal server error: " + error.message });
+  }
 };
 
 export {
-  verifyStripe,
   placeOrder,
-  placeOrderStripe,
   placeOrderRazorpay,
   allOrders,
   userOrders,
   updateStatus,
+  cancelOrder,
 };

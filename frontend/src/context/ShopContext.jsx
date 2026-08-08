@@ -115,20 +115,24 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
-  const getUserCart = async () => {
+  const getUserCart = async (tokenParam) => {
+    const activeToken = tokenParam || token;
+    if (!activeToken) return;
     try {
       const response = await axios.post(
         backendUrl + "/api/cart/get",
         {},
-        { headers: { token } }
+        { headers: { token: activeToken } }
       );
 
       if (response.data.success) {
         setCartItems(response.data.cartData);
+      } else if (response.data.message === "Not Authorized Login Again") {
+        localStorage.removeItem("token");
+        setToken("");
       }
     } catch (error) {
       console.error("Error fetching user cart:", error);
-      toast.error("Lỗi khi lấy dữ liệu giỏ hàng: " + error.message);
     }
   };
 

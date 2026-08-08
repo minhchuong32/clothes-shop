@@ -139,6 +139,9 @@ Giỏ hàng được quản lý đồng thời ở **Local State** (để tăng 
 
 ### 4. Quy trình Đặt hàng & Thanh toán (Checkout & Payment Flow)
 
+> [!NOTE]
+> Để xem tài liệu chi tiết, sơ đồ tuần tự đầy đủ, cấu trúc database và hướng dẫn sửa lỗi cho luồng thanh toán, vui lòng đọc bản đầy đủ tại: **[README_PAYMENT_FLOW.md](file:///g:/code/project/Clother_Shop/README_PAYMENT_FLOW.md)**.
+
 Luồng đặt hàng bắt đầu từ trang [PlaceOrder.jsx](file:///g:/code/project/Clother_Shop/frontend/src/pages/PlaceOrder.jsx), người dùng nhập địa chỉ giao hàng và chọn 1 trong 2 phương thức thanh toán: **COD** hoặc **Stripe**.
 
 ```mermaid

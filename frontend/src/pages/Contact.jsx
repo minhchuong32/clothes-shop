@@ -34,9 +34,29 @@ const Contact = () => {
           <p className="text-gray-500">
             Tìm hiểu thêm về đội ngũ của chúng tôi và các vị trí đang tuyển.
           </p>
-          <button className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white">
+          <button className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500">
             Ứng tuyển ngay
           </button>
+        </div>
+      </div>
+
+      {/* Google Maps Section */}
+      <div className="my-10 mb-20">
+        <div className="text-center text-2xl py-4">
+          <Title text1={"BẢN ĐỒ"} text2={"CỬA HÀNG"} />
+        </div>
+        <div className="w-full h-[450px] rounded-xl overflow-hidden shadow-lg border border-gray-200">
+          <iframe
+            id="ggmap-frame"
+            title="Bản đồ vị trí Xuân Hải"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.7570997193616!2d108.93285927576595!3d14.925426899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3168f9f6e18a52ed%3A0x1e7e472aca0e7e67!2sXu%C3%A2n%20H%E1%BA%A3i!5e0!3m2!1svi!2svn!4v1723110000000!5m2!1svi!2svn"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
 

@@ -197,6 +197,18 @@ const cancelOrder = async (req, res) => {
   }
 };
 
+// delete order for admin panel
+const deleteOrder = async (req, res) => {
+  try {
+    const { orderId } = req.body;
+    await orderModel.findByIdAndDelete(orderId);
+    res.json({ success: true, message: "Xóa đơn hàng thành công" });
+  } catch (error) {
+    console.error("Error deleting order:", error);
+    res.status(500).json({ success: false, message: "Internal server error: " + error.message });
+  }
+};
+
 export {
   placeOrder,
   placeOrderRazorpay,
@@ -204,4 +216,5 @@ export {
   userOrders,
   updateStatus,
   cancelOrder,
+  deleteOrder,
 };

@@ -63,7 +63,8 @@ const listProducts = async (req, res) => {
         console.error(error)
         res.status(500).json({
             success: false,
-            message: 'Failed to retrieve products'
+            message: 'Failed to retrieve products',
+            error: error.message
         })
     }   
 }

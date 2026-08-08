@@ -2,7 +2,11 @@ import mongoose from "mongoose";
 import dns from "dns";
 
 // Force DNS servers to resolve MongoDB SRV records properly on Windows
-dns.setServers(["8.8.8.8", "1.1.1.1"]);
+if (process.platform === "win32") {
+  try {
+    dns.setServers(["8.8.8.8", "1.1.1.1"]);
+  } catch (e) {}
+}
 
 const connectDB = async () => {
     try {
